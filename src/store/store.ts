@@ -50,7 +50,9 @@ export const createAppStore = (initState: AppState = defaultStore) => {
             addToBetslip: (bet) => {},
             updateTotalStake: (betId, stake) => {},
             removeFromBetslip: (betId) => {},
-            toggleDrawerRight: (isOpen) => {},
+            toggleDrawerRight: (isOpen) => set((state) => {
+                state.drawerRight.isOpen = isOpen;
+            }),
         }))
     );
 };

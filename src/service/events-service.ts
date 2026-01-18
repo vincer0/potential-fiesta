@@ -6,8 +6,6 @@ export async function fetchEvents() {
     const response = await fetchMockData();
 
     const { data } = response as { data: Array<any> };
-
-    const mapped = mapEvents(data);
     
-    return mapped;
+    return mapEvents(data)
 }

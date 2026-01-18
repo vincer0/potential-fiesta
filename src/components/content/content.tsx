@@ -6,7 +6,7 @@ const Content = () => {
 
   console.log('games in content', games);
 
-  return <div>Content</div>;
+  return <div className="flex flex-grow">Content</div>;
 };
 
 export default Content;

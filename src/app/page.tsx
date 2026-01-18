@@ -13,7 +13,7 @@ export default async function Home() {
       <StoreHydrator mockedEvents={events} />
       <main className="flex h-full w-full items-center justify-between p-8 bg-white sm:items-start gap-8">
         <Content />
-        <div className="hidden md:block p-4 border rounded">
+        <div className="hidden md:block p-4 border rounded h-full w-[300px]">
           <Betslip />
         </div>
         <Drawer />

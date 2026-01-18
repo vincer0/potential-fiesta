@@ -4,7 +4,7 @@ import { useAppStore } from "@/providers/store-provider";
 const Betslip = () => {
   const { betslip } = useAppStore((state) => state);
 
-  return <div className="w-[300px]">
+  return <div className="h-full">
     <div>
         <p>Selections:</p>
         <div>

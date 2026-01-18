@@ -15,7 +15,7 @@ const HamburgerButton = () => {
   return (
     <button
       onClick={handleClick}
-      className="md:hidden z-40"
+      className="md:hidden z-50 fixed top-4 right-4 p-2 rounded shadow-lg bg-blue-500 hover:bg-blue-800 text-white"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"

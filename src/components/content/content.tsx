@@ -1,12 +1,14 @@
 'use client';
-import { useAppStore } from "@/providers/store-provider";
+
+import EventList from "./partials/event-list/event-list";
 
 const Content = () => {
-  const { games } = useAppStore((state) => state);
-
-  console.log('games in content', games);
-
-  return <div className="flex flex-grow">Content</div>;
+  return <div className="flex flex-col flex-grow">
+    <div className="w-full mb-4 border-b">
+        <p>Bets List</p>
+    </div>
+    <EventList />
+  </div>;
 };
 
 export default Content;

@@ -9,11 +9,11 @@ export default async function Home() {
   const events = await fetchEvents();
 
   return (
-    <div className="flex min-h-screen items-center justify-center font-sans">
+    <div className="flex items-center justify-center font-sans">
       <StoreHydrator mockedEvents={events} />
-      <main className="flex min-h-screen w-full items-center justify-between p-8 bg-white sm:items-start gap-8">
+      <main className="flex w-full items-center justify-between p-8 bg-white sm:items-start gap-8">
         <Content />
-        <div className="hidden md:block">
+        <div className="hidden md:block p-4 border rounded">
           <Betslip />
         </div>
         <Drawer />

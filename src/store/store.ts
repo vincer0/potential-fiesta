@@ -45,7 +45,7 @@ export const defaultStore: AppState = {
     selections: [],
     totalStake: 0,
     totalWin: 0,
-    totalOdds: 0,
+    totalOdds: 1,
   },
   drawerRight: {
     isOpen: false,
@@ -115,7 +115,7 @@ export const createAppStore = (initState: AppState = defaultStore) => {
           };
 
           state.betslip.selections.push(newSelection);
-          state.betslip.totalOdds += existingOutcome.outcomeOdds;
+          state.betslip.totalOdds *= existingOutcome.outcomeOdds;
           state.betslip.totalWin =
             state.betslip.totalStake * state.betslip.totalOdds;
 
@@ -128,11 +128,6 @@ export const createAppStore = (initState: AppState = defaultStore) => {
           );
 
           if (selectionIndex !== -1) {
-            const selection = state.betslip.selections[selectionIndex];
-            state.betslip.totalOdds -= selection.outcomeOdds;
-            state.betslip.totalWin =
-              state.betslip.totalStake * state.betslip.totalOdds;
-
             const allEvents = state.games.items;
             const existingEvent = allEvents.find(
               (event) => event.eventId === eventId,
@@ -151,6 +146,15 @@ export const createAppStore = (initState: AppState = defaultStore) => {
 
             state.betslip.selections.splice(selectionIndex, 1);
             existingOutcome.isSelected = false;
+
+            state.betslip.totalOdds = 1;
+
+            state.betslip.selections.forEach((sel) => {
+              state.betslip.totalOdds *= sel.outcomeOdds;
+            });
+
+            state.betslip.totalWin =
+              state.betslip.totalStake * state.betslip.totalOdds;
           }
         }),
       updateTotalStake: (stake) =>

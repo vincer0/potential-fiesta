@@ -4,7 +4,7 @@ interface EventGame {
     gameId: number;
     gameName: string;
     gameType: number;
-    outcomes: Array<Outcome>;
+    outcomes: Outcome[];
 }
 
 export { type EventGame };

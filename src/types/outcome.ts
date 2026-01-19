@@ -3,6 +3,7 @@ interface Outcome {
     outcomeName: string;
     outcomeOdds: number;
     outComePosition: number;
+    isSelected: boolean;
 }
 
 export { type Outcome };

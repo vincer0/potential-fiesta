@@ -13,7 +13,7 @@ interface Event {
     eventType: number;
     gamesCount: number;
     isCustomBetAvailable: boolean;
-    eventGames: Array<EventGame>;
+    eventGames: EventGame[];
 }
 
 export { type Event };

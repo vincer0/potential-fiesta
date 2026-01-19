@@ -8,6 +8,7 @@ const mapOutcomes = (rawOutcomes: Array<any>): Outcome[] =>
     outcomeName: rawOutcome.outcomeName,
     outcomeOdds: rawOutcome.outcomeOdds,
     outComePosition: rawOutcome.outComePosition,
+    isSelected: false
   }));
 
 const mapEventGames = (rawEventGames: Array<any>): EventGame[] =>
@@ -28,7 +29,7 @@ const mapEvents = (data: Array<any>): Event[] =>
     category3Name: rawEvent.category3Name,
     eventId: rawEvent.eventId,
     eventName: rawEvent.eventName,
-    eventStart: rawEvent.eventStart,
+    eventStart: `${new Date(rawEvent.eventStart).toLocaleDateString()} ${new Date(rawEvent.eventStart).toLocaleTimeString('pl-PL', { hour: '2-digit', minute: '2-digit' })}`,
     eventType: rawEvent.eventType,
     gamesCount: rawEvent.gamesCount,
     isCustomBetAvailable: rawEvent.isCustomBetAvailable,

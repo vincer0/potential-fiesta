@@ -1,6 +1,5 @@
-import Market from "@/components/market/market";
+import Outcome from "@/components/outcome/outcome";
 import { Event } from "@/types/event";
-import React from "react";
 
 interface EventListItemProps {
   event: Event;
@@ -23,7 +22,7 @@ const EventListItem = ({ event }: EventListItemProps) => {
       <div className="grid gap-4 grid-cols-3 w-full xl:w-[300px]">
         {mainMarketGroup &&
           mainMarketGroup.outcomes.map((game) => (
-            <Market key={game.outcomeId} market={game} />
+            <Outcome key={game.outcomeId} outcome={game} eventId={event.eventId} eventGameId={mainMarketGroup.gameId} />
           ))}
       </div>
     </div>

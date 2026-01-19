@@ -1,34 +1,44 @@
-'use client';
+"use client";
 import { useAppStore } from "@/providers/store-provider";
+import BetslipEntry from "./partials/betslip-entry";
 
 const Betslip = () => {
-  const { betslip } = useAppStore((state) => state);
+  const betslip = useAppStore((state) => state.betslip);
 
-  return <div className="h-full">
-    <div>
-        <p>Selections:</p>
-        <div>
-            Entries here
+  return (
+    <div className="flex flex-col h-full">
+      <div className="flex flex-col flex-grow">
+        {betslip.selections.length === 0 ? (
+          <p>Brak wybranych zakładów</p>
+        ) : (
+          <div className="flex flex-col gap-4 overflow-y-auto">
+            {betslip.selections.map((selection) => (
+              <BetslipEntry key={selection.outcomeId} selection={selection} />
+            ))}
+          </div>
+        )}
+      </div>
+      <div className="flex flex-col">
+        <div className="flex items-center justify-between mb-4">
+          <p>Stawka:</p>
+          <input type="number" className="border rounded" />
         </div>
-        <div className="flex flex-col">
-            <div className="flex items-center">
-                <p>Stawka</p>
-                <input type="number" className="ml-2 border p-1 w-20"/>
-            </div>
-            <div className="flex">
-                <p>Kurs całkowity:</p>
-                <p>XX.XX</p>
-            </div>
-            <div className="flex">
-                <p>Potencjalna wygrana:</p>
-                <p>XXXXXX</p>
-            </div>
-            <div>
-                <button className="bg-blue-500 text-white px-4 py-2 rounded mt-2">Postaw zakład</button>
-            </div>
+        <div className="flex justify-between">
+          <p>Kurs całkowity:</p>
+          <p>{betslip.totalOdds}</p>
         </div>
+        <div className="flex justify-between">
+          <p>Potencjalna wygrana:</p>
+          <p>{betslip.totalWin}</p>
+        </div>
+        <div className="flex">
+          <button className="w-full bg-blue-500 text-white px-4 py-2 rounded mt-2">
+            Postaw zakład
+          </button>
+        </div>
+      </div>
     </div>
-  </div>;
+  );
 };
 
 export default Betslip;

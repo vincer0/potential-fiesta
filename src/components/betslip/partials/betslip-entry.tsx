@@ -23,7 +23,7 @@ const BetslipEntry = ({ selection }: BetslipEntryProps) => {
         <div className="flex justify-between">
           <p className="font-semibold">{selection.outcomeName}</p>
           <p className="bg-blue-500 rounded px-2 text-white">
-            {selection.outcomeOdds}
+            {selection.outcomeOdds.toFixed(2)}
           </p>
           <button className="cursor-pointer" onClick={handleOnRemoveEntry}>
             <svg

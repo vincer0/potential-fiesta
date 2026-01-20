@@ -7,9 +7,8 @@ interface StoreHydratorProps {
     mockedEvents: Event[];
 }
 
-// This component is used to hydrate the store with server data
 const StoreHydrator = ({ mockedEvents }: StoreHydratorProps) => {
-    const { setGames } = useAppStore((state) => (state));
+    const setGames = useAppStore((state) => (state.setGames));
 
     useEffect(() => {
         setGames(mockedEvents);

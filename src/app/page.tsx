@@ -2,6 +2,7 @@ import Betslip from "@/components/betslip/betslip";
 import Content from "@/components/content/content";
 import Drawer from "@/components/drawer/drawer";
 import HamburgerButton from "@/components/hamburger-button";
+import LiveStarter from "@/components/live-starter";
 import StoreHydrator from "@/components/store-hydrator";
 import { fetchEvents } from "@/service/events-service";
 
@@ -10,6 +11,7 @@ export default async function Home() {
 
   return (
     <div className="flex items-center justify-center font-sans h-full">
+      <LiveStarter />
       <StoreHydrator mockedEvents={events} />
       <main className="flex h-full w-full items-center justify-between p-8 bg-white sm:items-start gap-8">
         <Content />

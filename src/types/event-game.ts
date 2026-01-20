@@ -4,7 +4,14 @@ interface EventGame {
     gameId: number;
     gameName: string;
     gameType: number;
+}
+
+interface EventGameHeavy extends EventGame {
     outcomes: Outcome[];
 }
 
-export { type EventGame };
+interface EventGameLight extends EventGame {
+    outcomes: { outcomeId: number }[];
+}
+
+export { type EventGame, type EventGameHeavy, type EventGameLight };

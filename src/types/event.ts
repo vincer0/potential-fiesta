@@ -1,4 +1,4 @@
-import { EventGame } from "./event-game";
+import { EventGameHeavy } from "./event-game";
 
 interface Event {
     category1Id: number;
@@ -13,7 +13,7 @@ interface Event {
     eventType: number;
     gamesCount: number;
     isCustomBetAvailable: boolean;
-    eventGames: EventGame[];
+    eventGames: EventGameHeavy[];
 }
 
 export { type Event };

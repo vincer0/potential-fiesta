@@ -3,7 +3,8 @@ import { useAppStore } from "@/providers/store-provider";
 import Betslip from "../betslip/betslip";
 
 const Drawer = () => {
-  const { drawerRight, toggleDrawerRight } = useAppStore((state) => state);
+  const { isOpen } = useAppStore((state) => state.drawerRight);
+  const toggleDrawerRight = useAppStore((state) => state.toggleDrawerRight);
 
   const handleDrawerClose = () => {
     toggleDrawerRight(false);
@@ -11,7 +12,7 @@ const Drawer = () => {
 
   return (
     <>
-      {drawerRight.isOpen && (
+      {isOpen && (
         <div
           className="md:hidden fixed inset-0 bg-black opacity-30 z-40"
           onClick={handleDrawerClose}
@@ -19,7 +20,7 @@ const Drawer = () => {
       )}
       <div
         className={`md:hidden fixed right-0 top-0 h-full w-80 bg-white shadow-lg z-50 transform transition-transform duration-300 ease-in-out ${
-          drawerRight.isOpen ? "translate-x-0" : "translate-x-full"
+          isOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
         <div className="p-4">

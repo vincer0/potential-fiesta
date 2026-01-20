@@ -2,13 +2,14 @@
 import { useAppStore } from "@/providers/store-provider";
 
 const HamburgerButton = () => {
-  const { drawerRight, toggleDrawerRight } = useAppStore((state) => state);
+  const { isOpen } = useAppStore((state) => state.drawerRight);
+  const toggleDrawerRight = useAppStore((state) => state.toggleDrawerRight);
 
   const handleClick = () => {
-    toggleDrawerRight(!drawerRight.isOpen);
+    toggleDrawerRight(!isOpen);
   };
 
-  if (drawerRight.isOpen) {
+  if (isOpen) {
     return null;
   }
 

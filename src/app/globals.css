@@ -1,1 +1,29 @@
 @import "tailwindcss";
+
+@keyframes odds-up {
+    /* from {
+        background-color: transparent;
+    } */
+    to {
+        background-color: rgba(0, 255, 0, 0.3);
+    }
+}
+
+@keyframes odds-down {
+    /* from {
+        background-color: transparent;
+    } */
+    to {
+        background-color: rgba(219, 45, 1, 0.3);
+    }
+}
+
+div.animate-odds-up {
+    animation: odds-up 0.5s ease-in-out;
+    color: green;
+}
+
+div.animate-odds-down {
+    animation: odds-down 0.5s ease-in-out;
+    color: red;
+}

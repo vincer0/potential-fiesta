@@ -2,6 +2,8 @@ import { Event } from "@/types/event";
 import { BetslipSelection } from "@/types/betslip-selection";
 import { createStore } from "zustand/vanilla";
 import { immer } from "zustand/middleware/immer";
+import { EventGameLight } from "@/types/event-game";
+import { UpdateDirection } from "@/types/update-direction";
 
 export type AppState = {
   games: {
@@ -10,20 +12,16 @@ export type AppState = {
   list: {
     items: { eventId: number; eventName: string; eventStart: string }[];
   };
-  // TODO: consider add type
   eventGames: {
-    [eventId: number]: {
-      gameId: number;
-      gameName: string;
-      gameType: number;
-      outcomes: { outcomeId: number }[];
-    }[];
+    [eventId: number]: EventGameLight[];
   };
   eventGameOutcomes: {
     [eventGameId: number]: {
       outcomeOdds: number;
       isSelected: boolean;
       outcomeName: string;
+      lastDirection: UpdateDirection;
+      lastUpdate: number | null;
     };
   };
   betslip: {
@@ -118,6 +116,8 @@ export const createAppStore = (initState: AppState = defaultStore) => {
                   outcomeOdds: outcome.outcomeOdds,
                   isSelected: outcome.isSelected,
                   outcomeName: outcome.outcomeName,
+                  lastDirection: null,
+                  lastUpdate: null,
                 };
               });
             });
@@ -220,8 +220,25 @@ export const createAppStore = (initState: AppState = defaultStore) => {
         }),
       updateOutcomeOdds: (outcomeId, newOdds) =>
         set((state) => {
+          if (newOdds > state.eventGameOutcomes[outcomeId].outcomeOdds) {
+            state.eventGameOutcomes[outcomeId].lastDirection = "up";
+          } else if (newOdds < state.eventGameOutcomes[outcomeId].outcomeOdds) {
+            state.eventGameOutcomes[outcomeId].lastDirection = "down";
+          } else {
+            state.eventGameOutcomes[outcomeId].lastDirection = null;
+          }
+
+          state.eventGameOutcomes[outcomeId].lastUpdate = Date.now();
           // TODO: check for betslip, if odds changed - block button, show notification
           state.eventGameOutcomes[outcomeId].outcomeOdds = newOdds;
+
+          const selection = state.betslip.selections.find(
+            (sel) => sel.outcomeId === outcomeId,
+          );
+
+          if (selection) {
+
+          }
         }),
     })),
   );

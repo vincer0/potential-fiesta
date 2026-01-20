@@ -1,5 +1,5 @@
 import { Event } from "@/types/event";
-import { EventGame } from "@/types/event-game";
+import { EventGameHeavy } from "@/types/event-game";
 import { Outcome } from "@/types/outcome";
 
 const mapOutcomes = (rawOutcomes: Array<any>): Outcome[] =>
@@ -11,7 +11,7 @@ const mapOutcomes = (rawOutcomes: Array<any>): Outcome[] =>
     isSelected: false
   }));
 
-const mapEventGames = (rawEventGames: Array<any>): EventGame[] =>
+const mapEventGames = (rawEventGames: Array<any>): EventGameHeavy[] =>
   rawEventGames.map((rawGame) => ({
     gameId: rawGame.gameId,
     gameName: rawGame.gameName,

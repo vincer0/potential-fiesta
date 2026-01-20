@@ -16,7 +16,7 @@ const LiveStarter = () => {
       if (!keys.length) return;
 
       const randomIndex = Math.floor(Math.random() * keys.length);
-      const id = Number(keys[0]); // TODO: hadrdcoded for testing purposes
+      const id = Number(keys[randomIndex]);
       const outcome = oucomes[id];
       if (!outcome) return;
 
@@ -25,7 +25,7 @@ const LiveStarter = () => {
       const newOdds = Math.max(1, Number(nextOddsRaw.toFixed(2)));
 
       updateOutcomeOdds(id, newOdds);
-    }, 1000);
+    }, 3000);
 
     return () => {
       if (intervalRef.current) {

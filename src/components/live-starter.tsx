@@ -21,7 +21,8 @@ const LiveStarter = () => {
       if (!outcome) return;
 
       const multiplier = Math.random() * (1.1 - 0.9) + 0.9;
-      const newOdds = Number((outcome.outcomeOdds * multiplier).toFixed(2));
+      const nextOddsRaw = outcome.outcomeOdds * multiplier;
+      const newOdds = Math.max(1, Number(nextOddsRaw.toFixed(2)));
 
       updateOutcomeOdds(id, newOdds);
     }, 1000);

@@ -1,9 +1,9 @@
 import Betslip from "@/components/betslip/betslip";
 import Content from "@/components/content/content";
 import Drawer from "@/components/drawer/drawer";
-import HamburgerButton from "@/components/hamburger-button";
-import LiveStarter from "@/components/live-starter";
-import StoreHydrator from "@/components/store-hydrator";
+import HamburgerButton from "@/components/drawer/hamburger-button";
+import LiveStarter from "@/components/system/live-starter";
+import StoreHydrator from "@/components/system/store-hydrator";
 import { fetchEvents } from "@/service/events-service";
 
 export default async function Home() {

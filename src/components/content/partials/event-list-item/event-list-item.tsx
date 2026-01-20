@@ -1,6 +1,6 @@
 'use client';
 
-import OutcomesWrapper from "@/components/outcomes-wrapper/outcomes-wrapper";
+import OutcomesWrapper from "@/components/content/partials/outcomes-wrapper/outcomes-wrapper";
 
 interface EventListItemProps {
   eventId: number;

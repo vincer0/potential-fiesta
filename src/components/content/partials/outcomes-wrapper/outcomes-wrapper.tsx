@@ -1,5 +1,5 @@
 "use client";
-import Outcome from "@/components/outcome/outcome";
+import Outcome from "@/components/content/partials/outcome/outcome";
 import { useAppStore } from "@/providers/store-provider";
 import { useMemo } from "react";
 

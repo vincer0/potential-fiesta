@@ -32,6 +32,7 @@ export type AppState = {
     message: string;
     locked: boolean;
     conflicts: number[];
+    acceptMessage: string;
   };
   drawerRight: {
     isOpen: boolean;
@@ -54,6 +55,7 @@ export type AppStateActions = {
   toggleDrawerRight: (isOpen: boolean) => void;
   clearBetslip: () => void;
   updateOutcomeOdds: (outcomeId: number, newOdds: number) => void;
+  acceptAllOdds: () => void;
 };
 
 export type Store = AppState & AppStateActions;
@@ -75,6 +77,7 @@ export const defaultStore: AppState = {
     message: "",
     locked: false,
     conflicts: [],
+    acceptMessage: "",
   },
   drawerRight: {
     isOpen: false,
@@ -237,8 +240,28 @@ export const createAppStore = (initState: AppState = defaultStore) => {
           );
 
           if (selection) {
-
+            state.betslip.locked = true;
+            state.betslip.acceptMessage =
+              "Kursy wybranych zakładów uległy zmianie. Proszę zweryfikować zakład przed postawieniem.";
           }
+        }),
+      acceptAllOdds: () =>
+        set((state) => {
+          state.betslip.locked = false;
+          state.betslip.acceptMessage = "";
+
+          state.betslip.selections.forEach((selection) => {
+            const updatedOutcome = state.eventGameOutcomes[selection.outcomeId];
+            selection.outcomeOdds = updatedOutcome.outcomeOdds;
+          });
+
+          state.betslip.totalOdds = 1;
+          state.betslip.selections.forEach((sel) => {
+            state.betslip.totalOdds *= sel.outcomeOdds;
+          });
+
+          state.betslip.totalWin =
+            state.betslip.totalStake * state.betslip.totalOdds;
         }),
     })),
   );

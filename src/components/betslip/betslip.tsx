@@ -5,20 +5,29 @@ import debounce from "lodash.debounce";
 import React from "react";
 
 const Betslip = () => {
-  const { totalOdds, totalWin, selections, message, locked } = useAppStore(
+  const { totalOdds, totalWin, selections, message, locked, acceptMessage } = useAppStore(
     (state) => state.betslip,
   );
   const updateTotalStake = useAppStore((state) => state.updateTotalStake);
+  const acceptAllOdds = useAppStore((state) => state.acceptAllOdds);
 
   const handleOnInput = debounce((e: React.ChangeEvent<HTMLInputElement>) => {
     const value = parseFloat(e.target.value);
     updateTotalStake(isNaN(value) ? 0 : value);
   }, 300);
 
+  const handleOnAcceptOdds = () => {
+    acceptAllOdds();
+  };
+
   return (
     <div className="flex flex-col h-full">
       {message && <div className="p-2 bg-red-300 mb-2 rounded text-red-800">{message}</div>}
-      <div className="flex flex-col flex-grow">
+      {acceptMessage && <div className="p-2 flex flex-col mb-2 bg-orange-300">
+        <div className="mb-4 rounded text-orange-800">{acceptMessage}</div>
+        <button onClick={handleOnAcceptOdds} className="p-2 w-full bg-orange-100 text-orange-800">Akceptuję</button>
+      </div>}
+      <div className="flex flex-col flex-grow overflow-y-auto mb-4">
         {selections.length === 0 ? (
           <p>Brak wybranych zakładów</p>
         ) : (

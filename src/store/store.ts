@@ -158,6 +158,11 @@ export const createAppStore = (initState: AppState = defaultStore) => {
           });
 
           state.eventGameOutcomes[outcomeId].isSelected = true;
+
+          state.betslip.totalOdds *= outcomeDetails.outcomeOdds;
+
+          state.betslip.totalWin =
+            state.betslip.totalStake * state.betslip.totalOdds;
         }),
       removeFromBetslip: (outcomeId, eventId, eventGameId) =>
         set((state) => {

@@ -5,7 +5,7 @@ import debounce from "lodash.debounce";
 import React from "react";
 
 const Betslip = () => {
-  const { totalOdds, totalWin, selections } = useAppStore(
+  const { totalOdds, totalWin, selections, message, locked } = useAppStore(
     (state) => state.betslip,
   );
   const updateTotalStake = useAppStore((state) => state.updateTotalStake);
@@ -17,6 +17,7 @@ const Betslip = () => {
 
   return (
     <div className="flex flex-col h-full">
+      {message && <div className="p-2 bg-red-300 mb-2 rounded text-red-800">{message}</div>}
       <div className="flex flex-col flex-grow">
         {selections.length === 0 ? (
           <p>Brak wybranych zakładów</p>
@@ -47,7 +48,7 @@ const Betslip = () => {
             <p>{totalWin.toFixed(2)}</p>
           </div>
           <div className="flex">
-            <button className="w-full bg-blue-500 text-white px-4 py-2 rounded mt-2">
+            <button disabled={locked} className="w-full bg-blue-500 text-white px-4 py-2 rounded mt-2">
               Postaw zakład
             </button>
           </div>

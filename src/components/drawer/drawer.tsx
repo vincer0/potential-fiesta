@@ -19,11 +19,11 @@ const Drawer = () => {
         />
       )}
       <div
-        className={`md:hidden fixed right-0 top-0 h-full w-80 bg-white shadow-lg z-50 transform transition-transform duration-300 ease-in-out ${
+        className={`md:hidden fixed p-4 right-0 top-0 bottom-0 w-80 bg-white shadow-lg z-50 overflow-hidden transform transition-transform duration-300 ease-in-out ${
           isOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
-        <div className="p-4 h-full flex flex-col">
+        <div className="flex flex-col h-full">
           <div className="flex justify-between items-center mb-4">
             <h2 className="text-lg font-semibold">Betslip</h2>
             <button

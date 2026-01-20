@@ -1,14 +1,19 @@
-import React from "react";
 import { useAppStore } from "@/providers/store-provider";
 import EventListItem from "../event-list-item/event-list-item";
 
 const EventList = () => {
-  const { games } = useAppStore((state) => state);
+  const eventListItems = useAppStore((state) => state.list.items);
 
-  console.log("games in content", games);
   return (
     <div className="flex flex-col gap-4">
-      {games.items.map((game) => <EventListItem key={game.eventId} event={game} />)}
+      {eventListItems.map((event) => (
+        <EventListItem
+          key={event.eventId}
+          eventId={event.eventId}
+          eventName={event.eventName}
+          eventStart={event.eventStart}
+        />
+      ))}
     </div>
   );
 };

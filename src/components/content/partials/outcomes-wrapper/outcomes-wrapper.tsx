@@ -7,6 +7,8 @@ interface OutcomeWrapperProps {
   eventId: number;
 }
 
+const MAIN_EVENT_GAME_TYPE = 1; // Define the main event game type (this should be provided from api or smth - which game should show up on the list)
+
 const OutcomesWrapper = ({ eventId }: OutcomeWrapperProps) => {
   const eventGames = useAppStore((state) => state.eventGames[eventId]);
   const mainEventGame = useMemo(() => {
@@ -14,7 +16,7 @@ const OutcomesWrapper = ({ eventId }: OutcomeWrapperProps) => {
       return null;
     }
 
-    return eventGames[0];
+  return eventGames.find((game) => game.gameType === MAIN_EVENT_GAME_TYPE);
   }, [eventGames]);
 
   console.log("OutcomesWrapper rendering for eventId:", mainEventGame);
